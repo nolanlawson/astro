@@ -200,7 +200,11 @@ export default defineConfig({
 
 ## Access to the Cloudflare runtime
 
-You can access the runtime from Astro components and API routes through `Astro.locals`.
+You can access the runtime ([Cloudflare bindings](https://developers.cloudflare.com/pages/platform/functions/bindings), [environment variables](https://developers.cloudflare.com/pages/platform/functions/bindings/#environment-variables), and the [cf object](https://developers.cloudflare.com/workers/runtime-apis/request/#incomingrequestcfproperties)) from Astro components and API routes through `Astro.locals`.
+
+Currently supported bindings:
+
+- [D1](https://developers.cloudflare.com/d1/)
 
 ### Access
 
