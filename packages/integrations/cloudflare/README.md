@@ -206,6 +206,7 @@ Currently supported bindings:
 
 - [D1](https://developers.cloudflare.com/d1/)
 - [R2](https://developers.cloudflare.com/r2/)
+- [KV](https://developers.cloudflare.com/kv/)
 
 ### Access
 
