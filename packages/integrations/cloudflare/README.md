@@ -205,6 +205,7 @@ You can access the runtime ([Cloudflare bindings](https://developers.cloudflare.
 Currently supported bindings:
 
 - [D1](https://developers.cloudflare.com/d1/)
+- [R2](https://developers.cloudflare.com/r2/)
 
 ### Access
 
