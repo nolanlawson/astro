@@ -6,7 +6,7 @@ import { NoOpLog } from '@miniflare/shared';
 import { MemoryStorage } from '@miniflare/storage-memory';
 import { AstroError } from 'astro/errors';
 import esbuild from 'esbuild';
-import { Miniflare } from 'miniflare';
+import { Miniflare, Response } from 'miniflare';
 import * as fs from 'node:fs';
 import * as os from 'node:os';
 import { dirname, relative, sep } from 'node:path';
@@ -140,6 +140,7 @@ export default function createIntegration(args?: Options): AstroIntegration {
 								script: '',
 								cache: true,
 								cachePersist: true,
+								cacheWarnUsage: true,
 								d1Databases: D1Bindings,
 								d1Persist: true,
 								r2Buckets: R2Bindings,
@@ -161,6 +162,7 @@ export default function createIntegration(args?: Options): AstroIntegration {
 								const namespace = await _mf.getKVNamespace(KVBinding);
 								Reflect.set(bindingsEnv, KVBinding, namespace);
 							}
+							const mfCache = await _mf.getCaches();
 
 							process.env.PWD = originalPWD;
 							const clientLocalsSymbol = Symbol.for('astro.locals');
@@ -183,12 +185,7 @@ export default function createIntegration(args?: Options): AstroIntegration {
 									waitUntil: (_promise: Promise<any>) => {
 										return;
 									},
-									caches: new CacheStorage(
-										{ cache: true, cachePersist: false },
-										new NoOpLog(),
-										new StorageFactory(),
-										{}
-									),
+									caches: mfCache,
 								},
 							});
 							next();
